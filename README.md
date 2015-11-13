@@ -1,4 +1,4 @@
-# corpus
+# Corpus
 An app built with Jinaga and Knockout. A personal Body of Knowledge.
 
 ## Jinaga and Knockout

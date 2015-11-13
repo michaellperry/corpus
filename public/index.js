@@ -3,7 +3,10 @@ j.sync(new JinagaDistributor("ws://jinaga.cloudapp.net"));
 
 var user = ko.observable();
 j.login(function (u) {
-    user(u);
+    if (!u)
+        window.location = "http://jinaga.cloudapp.net/login";
+    else
+        user(u);
 });
 
 var viewModel = function() {
