@@ -1,0 +1,9 @@
+node_modules/
+bower_components/
+.idea/
+node/*.js
+web/*.js
+typings/
+src/*.js
+src/*.js.map
+*.tgz

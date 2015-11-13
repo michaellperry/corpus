@@ -1,0 +1,24 @@
+{
+  "name": "corpus",
+  "description": "Body of knowledge",
+  "main": "index.js",
+  "authors": [
+    "Michael L Perry"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/michaellperry/corpus",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jinaga": "~1.1.0",
+    "knockout": "knockoutjs#~3.3.0"
+  }
+}
