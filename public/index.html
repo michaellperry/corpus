@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1 data-bind="text: name"></h1>
-<p data-bind="text: identity"></p>
+<h1>Podcasts</h1>
+<select data-bind="options: podcasts, optionsText: 'name', value: selectedPodcast, optionsCaption: 'Choose one...'"></select>
 <script language="JavaScript" src="../bower_components/jinaga/jinaga.js"></script>
 <script language="JavaScript" src="../bower_components/knockout/dist/knockout.js"></script>
 <script language="JavaScript" src="index.js"></script>
