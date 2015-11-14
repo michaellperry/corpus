@@ -9,7 +9,7 @@
 <h1>Podcasts</h1>
 <select data-bind="options: podcasts, optionsText: 'name', value: selectedPodcast, optionsCaption: 'Choose one...'"></select>
 <div data-bind="foreach: episodes">
-    <p data-bind="text: number"></p>
+    <p><span data-bind="text: number"></span>: <span data-bind="text: title"></span></p>
 </div>
 <script language="JavaScript" src="../bower_components/jinaga/jinaga.js"></script>
 <script language="JavaScript" src="../bower_components/knockout/dist/knockout.js"></script>

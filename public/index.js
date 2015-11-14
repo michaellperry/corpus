@@ -50,6 +50,15 @@ function ko_value_of(obs) {
     });
 }
 
+function isCurrent(type) {
+    return function(n) {
+        return j.not({
+            type: type,
+            prior: n
+        });
+    };
+}
+
 var viewModel = function() {
     var user = ko.observable();
     j.login(function (u) {
@@ -71,17 +80,11 @@ var viewModel = function() {
     function podcastViewModel(podcast) {
         var names = ko.observableArray();
 
-        function isCurrent(n) {
-            return j.not({
-                type: "Corpus.Podcast.Name",
-                prior: n
-            });
-        }
         function namesForPodcast(p) {
             return j.where({
                 type: "Corpus.Podcast.Name",
                 in: p
-            }, [isCurrent]);
+            }, [isCurrent("Corpus.Podcast.Name")]);
         }
         ko_watch_array_readonly(podcast, [namesForPodcast], names);
 
@@ -107,8 +110,19 @@ var viewModel = function() {
     ko_watch_array(selectedPodcastFact, [episodesInPodcast], episodes);
 
     function episodeViewModel(episode) {
+        var titles = ko.observableArray();
+
+        function titlesForEpisode(e) {
+            return j.where({
+                type: "Corpus.Episode.Title",
+                episode: e
+            }, [isCurrent("Corpus.Episode.Title")]);
+        }
+        ko_watch_array_readonly(episode, [titlesForEpisode], titles);
+
         return {
-            number: episode.number
+            number: episode.number,
+            title: ko_value_of(titles)
         };
     }
 
