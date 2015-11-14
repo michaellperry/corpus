@@ -86,18 +86,40 @@ var viewModel = function() {
         ko_watch_array_readonly(podcast, [namesForPodcast], names);
 
         return {
-            name: ko_value_of(names)
+            name: ko_value_of(names),
+            fact: podcast
         }
     }
     var selectedPodcast = ko.observable();
 
+    var episodes = ko.observableArray();
+    function episodesInPodcast(p) {
+        return {
+            type: "Corpus.Episode",
+            in: p
+        };
+    }
+    var selectedPodcastFact = ko.computed(function () {
+        if (!selectedPodcast())
+            return null;
+        return selectedPodcast().fact;
+    });
+    ko_watch_array(selectedPodcastFact, [episodesInPodcast], episodes);
+
+    function episodeViewModel(episode) {
+        return {
+            number: episode.number
+        };
+    }
+
     return {
         podcasts: ko.computed(function () {
-            var array = podcasts();
-            var children = array.map(podcastViewModel);
-            return children;
+            return podcasts().map(podcastViewModel);
         }),
-        selectedPodcast: selectedPodcast
+        selectedPodcast: selectedPodcast,
+        episodes: ko.computed(function () {
+            return episodes().map(episodeViewModel);
+        })
     };
 }();
 
